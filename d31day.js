@@ -7,7 +7,7 @@ d3.json("1day.json", function(err,data) {
     console.log("data length: ",data.length);
 
     var times = ["time"];
-    var values = ["discharge, cubic feet per second"];
+    var values = ["discharge"];
     //for holding x and y axis values, respectively. In C3, the first value in the list
     //of data is the "title" of that set of data
 
@@ -42,7 +42,11 @@ d3.json("1day.json", function(err,data) {
 
             columns: [
                 times,values
-            ]
+            ],
+
+            colors: {
+                // discharge: '#ff0000'
+            }
         },
 
         axis : {
@@ -66,6 +70,14 @@ d3.json("1day.json", function(err,data) {
         //turn on the subchart
         subchart: {
             show: true
-        },
+        }
+
+
     });
+
+    // setTimeout(function () {
+    //     chart.transform('bar', 'discharge');
+    // }, 1000);
+
+
 });
