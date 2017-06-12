@@ -1,12 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <link rel="stylesheet" type="text/css" href="d3.css">
     <link rel="stylesheet" type="text/css" href="c3.min.css">
     <script type="text/javascript" src="d3.min.js"> </script>
     <script type="text/javascript" src="c3.min.js"></script>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <!--link d3 and c3 files-->
+
+
+    <title>1 day water discharge using D3 and C3</title>
 </head>
 
 <body>
@@ -24,38 +26,48 @@
     d3.json("1day.json", function(err,data) {
         console.log("data length: ",data.length);
 
-        var min = data[0]["value"];
-        var max = data[0]["value"];
-        var times = ["x"];
+        var times = ["time"];
         var values = ["discharge, cubic feet per second"];
+        //for holding x and y axis values, respectively. In C3, the first value in the list
+        //of data is the "title" of that set of data
 
         for (var i=0; i<data.length; i++) {
-            if (min > data[i]["value"]) {
-                min = data[i]["value"];
-            }
-            if (max < data[i]["value"]) {
-                max = data[i]["value"];
-            }
 
             times.push(data[i]["dateTime"].slice(11,19));
+            //take only the time (since we are only using 1 day of data
+
             values.push(data[i]["value"]);
+            //fill data for y axis
         }
 
         var chart = c3.generate({
+            //generate chart using c3
+
             bindto: '#chart',
+            //bind to char div
+
             data: {
                 type: "spline",
+                //this type of chart has curvier lines
+
                 selection: {
                     draggable: true
                 },
+                //make it draggable
+
                 xFormat: '%H:%M:%S',
-                x: "x",
+                //format time
+                x: "time",
+                //select value for x axis
+
                 columns: [
                     times,values
                 ]
             },
 
             axis : {
+
+                //set up x axis
                 x : {
                     type : 'timeseries',
                     tick: {
@@ -65,25 +77,18 @@
                     label: "Time"
                 }
             },
+
+            //enable zoom
             zoom: {
                 enabled: true
             },
 
+            //turn on the subchart
             subchart: {
                 show: true
             }
         });
-
-
-        console.log(times);
-        console.log(values);
-
-        console.log("Min is ", min);
-        console.log("Max is ", max);
-
     });
-
-
 
 </script>
 
