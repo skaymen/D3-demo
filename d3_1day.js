@@ -58,7 +58,18 @@ d3.json("1day.json", function(err,data) {
                     format: '%H:%M:%S'
                     //format: '%Y' // format string is also available for timeseries data
                 },
-                label: "Time"
+                label: {
+                    text: "Time",
+                    position: "outer-center"
+                }
+            },
+
+            y: {
+                label: {
+                    text: "cubic feet per second",
+                    position: "outer-middle"
+                }
+
             }
         },
 
@@ -75,9 +86,20 @@ d3.json("1day.json", function(err,data) {
 
     });
 
-    // setTimeout(function () {
-    //     chart.transform('bar', 'discharge');
-    // }, 1000);
+    setTimeout(function () {
+        chart.transform('scatter');
+    }, 2000);
 
+    setTimeout(function () {
+        chart.transform('area-spline');
+    }, 4000);
+
+    setTimeout(function () {
+        chart.transform('bar', 'discharge');
+    }, 6000);
+
+    setTimeout(function () {
+        chart.transform('spline', 'discharge');
+    }, 8000);
 
 });
