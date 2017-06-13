@@ -61,6 +61,7 @@ d3.json("1day.json", function(err,data) {
                 label: {
                     text: "Time",
                     position: "outer-center"
+                    //set and position x label
                 }
             },
 
@@ -68,6 +69,7 @@ d3.json("1day.json", function(err,data) {
                 label: {
                     text: "cubic feet per second",
                     position: "outer-middle"
+                    //set and position y label
                 }
 
             }
@@ -86,6 +88,7 @@ d3.json("1day.json", function(err,data) {
 
     });
 
+    //test out different transformations
     setTimeout(function () {
         chart.transform('scatter');
     }, 2000);
