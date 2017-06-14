@@ -76,9 +76,9 @@ d3.json("1day.json", function(err,data) {
         },
 
         //enable zoom
-        zoom: {
-            enabled: true
-        },
+        // zoom: {
+        //     enabled: true
+        // },
 
         //turn on the subchart
         subchart: {
@@ -88,7 +88,7 @@ d3.json("1day.json", function(err,data) {
 
     });
 
-    //test out different transformations
+    // test out different transformations
     setTimeout(function () {
         chart.transform('scatter');
     }, 2000);
